@@ -1,0 +1,27 @@
+{% load static from static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Articles</title>
+    <link rel="stylesheet" href= "{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <h1><a href="{% url 'articles:list' %}"><img src="{% static 'logo(1).png' %}"></a></h1>
+        <nav>
+            <ul>
+                <li>
+                    <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        {% block content %}
+        
+        {% endblock %}
+    </div>
+</body>
+</html>
