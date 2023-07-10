@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework import status
 from .models import Article
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -22,15 +23,25 @@ def article_one(request, id):
     serializer = ArticleSerializers(articles, many=False)
     return Response(serializer.data)
 
+# @api_view(['POST'])
+# def article_create(request):
+#     serializer = ArticleSerializers(data=request.data)
+#     if not serializer.is_valid():
+#         return Response({'Status': status.HTTP_400_BAD_REQUEST, 'Error': serializer.errors})
+#     serializer.save()
+#     return Response({'Status': status.HTTP_201_CREATED, 'Details': serializer.data, 'Message': 'Data added successfully'})
+
 @api_view(['POST'])
-def article_create(request):
-    # data = request.data
-    serializer = ArticleSerializers(data=request.data)
-    if not serializer.is_valid():
-        return Response({'Status': 403, 'Error': serializer.errors})
-    serializer.save()
-    return Response({'Status': 200, 'Datails': serializer.data, 'Message': 'Data added successfully'})
-        # return Response(serializer.data)
+def article_create(self, request):
+        title = request.POST.get('title')
+        body = request.POST.get('body')
+        thumb = request.FILES.get('thumb')
+        print(thumb)
+
+        # Create a new blog object
+        blog = Article(title=title, body=body, thumb=thumb)
+        blog.save()
+        return JsonResponse({'message': 'Blog created successfully.'})
 
 @api_view(['PUT'])
 def article_update(request, id):
