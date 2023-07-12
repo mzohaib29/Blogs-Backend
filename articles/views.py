@@ -32,16 +32,32 @@ def article_one(request, id):
 #     return Response({'Status': status.HTTP_201_CREATED, 'Details': serializer.data, 'Message': 'Data added successfully'})
 
 @api_view(['POST'])
-def article_create(self, request):
-        title = request.POST.get('title')
-        body = request.POST.get('body')
-        thumb = request.FILES.get('thumb')
-        print(thumb)
+def article_create(request):
+        try:
+            print(request.data)
+            title = request.data.get('title')
+            body = request.data.get('body')
+            thumb = request.FILES.get('thumb')
+            author_name = request.data.get('author_name')
+            author_image = request.FILES.get('author_image')
+            # Create a new blog object
+            blog = Article(title=title, body=body, thumb=thumb, author_name = author_name, author_image = author_image)
+            blog.save()
+            return JsonResponse({'body': '123', 'title': '123', 'thumb': 'thumb', 'author_name': 'author_name', 'author_image': 'author_image'})
+        except Exception as e:
+            print(e)
+            return JsonResponse({'error': 'error'})
 
-        # Create a new blog object
-        blog = Article(title=title, body=body, thumb=thumb)
-        blog.save()
-        return JsonResponse({'message': 'Blog created successfully.'})
+# @api_view(['POST'])
+# def article_create(request):
+#         title = request.POST.get('title')
+#         body = request.POST.get('body')
+#         # thumb = request.FILES.get('thumb')
+#         # print(thumb)
+#         # Create a new blog object
+#         blog = Article(title=title, body=body)
+#         blog.save()
+#         return JsonResponse({'message': 'Blog created successfully.', 'title': title, 'body': body})
 
 @api_view(['PUT'])
 def article_update(request, id):

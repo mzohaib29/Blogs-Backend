@@ -8,6 +8,8 @@ def generate_slug(title):
     return slug
 
 class Article(models.Model):
+    id = models.AutoField(primary_key=True, verbose_name='ID', serialize=False)
+    trending = models.BooleanField(default=False)
     title = models.CharField(max_length=100)
     slug = models.SlugField()
     body = models.TextField()
@@ -19,6 +21,9 @@ class Article(models.Model):
     def save(self, *args, **kwargs):
         self.slug = generate_slug(self.title)
         super(Article, self).save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['id']
 
     def __str__(self):
         return self.title
