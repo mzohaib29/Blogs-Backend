@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.http import HttpResponse
+from django.http import JsonResponse
 
 def signup_view(request):
     if request.method == 'POST':
@@ -28,6 +29,9 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
+
+def get_csrf_token(request):
+    return JsonResponse({'csrfToken': request.COOKIES.get('csrftoken')})
 
 def logout_view(request):
     if request.method == 'POST':

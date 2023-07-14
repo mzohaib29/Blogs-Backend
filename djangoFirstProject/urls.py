@@ -9,7 +9,7 @@ urlpatterns = [
     path(r'admin/', admin.site.urls),   # Raw string
     path(r'accounts/', include('accounts.urls')),
     path(r'articles/', include('articles.urls')),
-    path(r'api/', include('api.urls')),
+    path(r'newapi/', include('newapi.urls')),
     path(r'about/', views.About),
     path(r'', views.Home)
 ]
