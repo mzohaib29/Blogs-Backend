@@ -19,16 +19,21 @@ class UserRegistrationView(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         # print("debug", request.data)
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        user.set_password(request.data['password'])
-        user.save()
-        print(user)
-        return Response(
-            {
-                "user": serializer.data,
-                "message": "User created successfully.",
-            },
-            status=status.HTTP_201_CREATED,
-        )
+        try: 
+            print(request.data)
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            user = serializer.save()
+            user.set_password(request.data['password'])
+            user.save()
+            print(user)
+            return Response(
+                {
+                    "user": serializer.data,
+                    "message": "User created successfully.",
+                },
+                status=status.HTTP_201_CREATED,
+            )
+        except Exception as e:
+            print(e)
+            return Response({'error': "Password do not match"})
