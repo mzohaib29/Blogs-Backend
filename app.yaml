@@ -12,5 +12,4 @@ handlers:
 # files defined.
 - url: /.*
   script: auto
-​
 entrypoint: gunicorn -b :$PORT core.wsgi
