@@ -1,5 +1,5 @@
 # [START django_app]
-service: Blogs_application
+service: BlogsApplication
 runtime: python38
 handlers:
 # This configures Google App Engine to serve the files in the app's
