@@ -156,11 +156,16 @@ WSGI_APPLICATION = 'djangoFirstProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv("DB_NAME"),
-        'USER': os.getenv("DB_USER"),
-        'PASSWORD': os.getenv("DB_PWD"),
-        'HOST': os.getenv("DB_HOST"),
-        'PORT': os.getenv("DB_PORT"),
+        # 'NAME': os.getenv("DB_NAME"),
+        # 'USER': os.getenv("DB_USER"),
+        # 'PASSWORD': os.getenv("DB_PWD"),
+        # 'HOST': os.getenv("DB_HOST"),
+        # 'PORT': os.getenv("DB_PORT"),
+        'HOST': "cloudsql/cloud-work-314310:us-central1:training-week",
+        'NAME': "BlogsApp_db",
+        'USER': "mzohaib",
+        'PASSWORD': "zohaibtariq864",
+        'PORT': 5432,
     }
 }
 #     print("Local DB connected")
