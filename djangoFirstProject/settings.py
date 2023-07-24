@@ -161,7 +161,7 @@ DATABASES = {
         # 'PASSWORD': os.getenv("DB_PWD"),
         # 'HOST': os.getenv("DB_HOST"),
         # 'PORT': os.getenv("DB_PORT"),
-        'HOST': "cloudsql/cloud-work-314310:us-central1:training-week",
+        'HOST': "/cloudsql/cloud-work-314310:us-central1:training-week",
         'NAME': "BlogsApp_db",
         'USER': "mzohaib",
         'PASSWORD': "zohaibtariq864",
