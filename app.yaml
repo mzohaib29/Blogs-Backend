@@ -12,4 +12,4 @@ handlers:
 # files defined.
 - url: /.*
   script: auto
-entrypoint: gunicorn -b :$PORT core.wsgi
+entrypoint: gunicorn -b :$PORT djangoFirstProject.wsgi
