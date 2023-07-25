@@ -10,14 +10,6 @@ jobs:
   deploy:
     name: Deploying to Google Cloud
     runs-on: ubuntu-latest
-    ##### ANY SECRETS WHICH ARE TO BE SET AS ENV's ON UBUNTU LATEST IMAGE BEFORE DEPLOYMENT, THIS DOESNOT SET ENV's FOR APP ENGINE
-    env:
-      DB_NAME: ${{ secrets.DB_NAME}}
-      DB_USER: ${{ secrets.DB_USER}}
-      DB_PWD: ${{ secrets.DB_PWD}}
-      DB_PORT: ${{ secrets.DB_PORT}}
-      DB_HOST: ${{ secrets.DB_HOST}}
-      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY}}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -25,12 +17,12 @@ jobs:
     - name: Creating Runtime .env and add service-account-key
       run: |
         touch .env
-        echo  DB_NAME="${{ secrets.DB_NAME }}" >> .env
-        echo  DB_USER="${{ secrets.DB_USER }}" >> .env
-        echo  DB_PWD="${{ secrets.DB_PWD }}" >> .env
-        echo  DJANGO_SECRET_KEY="${{ secrets.DJANGO_SECRET_KEY }}" >> .env
-        echo  DB_PORT="${{ secrets.DB_PORT }}" >> .env
-        echo  DB_HOST="${{ secrets.DB_HOST }}" >> .env
+        echo DB_NAME="${{ secrets.DB_NAME }}" >> .env
+        echo DB_USER="${{ secrets.DB_USER }}" >> .env
+        echo DB_PWD="${{ secrets.DB_PWD }}" >> .env
+        echo DJANGO_SECRET_KEY="${{ secrets.DJANGO_SECRET_KEY }}" >> .env
+        echo DB_PORT="${{ secrets.DB_PORT }}" >> .env
+        echo DB_HOST="${{ secrets.DB_HOST }}" >> .env
     - name: Setup python 3.8
       uses: actions/setup-python@v2
       with:
