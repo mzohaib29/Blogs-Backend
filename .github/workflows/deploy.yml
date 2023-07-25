@@ -37,14 +37,6 @@ jobs:
         export_default_credentials: true
     - name: Gather Static Files
       run: python manage.py collectstatic --noinput    ### CREATE RUNTIME MIGRATIONS, THIS MAY CAUSE SOME ERRORS IF MIGRATIONS FOLDER IS NOT MAINTAINED, REMOVE MIGRATIONS FOLDER NAME FROM .gitignore
-    # - name: Get Cloud SQL Proxy
-    #   run: |
-    #     wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy
-    #     chmod +x cloud_sql_proxy
-    # - name: Run Migrations
-    #   run: |
-    #       python manage.py makemigrations
-    #       python manage.py migrate
     - name: Deploy to App Engine
       id: deploy
       uses: google-github-actions/deploy-appengine@v0.2.0

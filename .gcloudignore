@@ -30,7 +30,6 @@ credentials.json
 .vscode/
 
 # Ignore environment-specific files (optional, based on your deployment strategy)
-*.env
 
 # Ignore any build or compiled files (optional, if using a build system)
 /build/

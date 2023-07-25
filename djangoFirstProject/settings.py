@@ -157,7 +157,7 @@ WSGI_APPLICATION = 'djangoFirstProject.wsgi.application'
 #     }
 # }
 # if os.getenv('GAE_APPLICATION', None):
-print(os.getenv("DB_NAME"), os.getenv("DB_PWD"),os.getenv("DB_USER"),os.getenv("DB_HOST"))
+print("", os.getenv("DB_NAME"), os.getenv("DB_PWD"),os.getenv("DB_USER"),os.getenv("DB_HOST"))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
